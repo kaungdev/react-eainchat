@@ -18,7 +18,7 @@ module.exports = app => {
   );
 
   app.get("/api/user", verifyToken, async (req, res) => {
-    const user = await User.findById(req.userId);
+    const user = await User.findById(req.userId).populate("township");
     res.json({
       status: "success",
       data: { user }

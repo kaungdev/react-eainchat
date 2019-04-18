@@ -8,7 +8,7 @@ const userSchema = new Schema({
   phone: { type: String, default: "" },
   address: { type: String, default: "" },
   points: { type: Number, default: 0 },
-  acceptedOrders: [{ type: Schema.Types.ObjectId, ref: "orders" }],
+  requestedOrders: [{ type: Schema.Types.ObjectId, ref: "orders" }],
   receivedOrders: [{ type: Schema.Types.ObjectId, ref: "orders" }],
   meals: [{ type: Schema.Types.ObjectId, ref: "meals" }],
   township: { type: Schema.Types.ObjectId, ref: "townships", default: null },
