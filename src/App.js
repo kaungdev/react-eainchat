@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     const routes = (
       <Switch>
-        <Route path="/" exact Component={Home} />
+        <Route path="/" exact component={Home} />
         <Redirect to="/" />
       </Switch>
     );

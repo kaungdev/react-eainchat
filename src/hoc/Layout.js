@@ -165,7 +165,8 @@ class MyAppBar extends Component {
         {this.props.children}
         <Grid container>
           <Grid item xs={12}>
-            Footer here
+            <hr />
+            Copyright © 2019 EainChat App. All rights reserved.
           </Grid>
         </Grid>
       </div>
