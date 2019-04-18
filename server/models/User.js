@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const customerSchema = new Schema({
+const userSchema = new Schema({
   name: { type: String, default: "" },
   fbId: { type: String, default: "" },
   email: { type: String, default: "" },
@@ -14,4 +14,26 @@ const customerSchema = new Schema({
   township: { type: Schema.Types.ObjectId, ref: "townships" }
 });
 
-module.exports = mongoose.model("customers", customerSchema);
+userSchema.statics.upsertFbUser = function(accessToken, refreshToken, profile) {
+  return new Promise(async (resolve, reject) => {
+    const that = this;
+    const foundUser = await this.findOne({ fbId: profile.id });
+    if (!foundUser) {
+      const newUser = new that({
+        name: profile.displayName,
+        email: profile.emails[0].value,
+        fbId: profile.id
+      });
+      try {
+        const savedUser = await newUser.save();
+        resolve(savedUser);
+      } catch (error) {
+        reject(error);
+      }
+    } else {
+      resolve(foundUser);
+    }
+  });
+};
+
+module.exports = mongoose.model("users", userSchema);

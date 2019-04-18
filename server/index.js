@@ -11,7 +11,8 @@ mongoose.connect("mongodb://localhost:27017/oily", {
 
 app.use(bodyParser.json());
 
-// require("./routes/oils")(app);
+require("./routes/user")(app);
+require("./routes/general")(app);
 
 app.get("*", (req, res) => {
   res.json({
