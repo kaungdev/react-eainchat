@@ -15,4 +15,5 @@ module.exports = app => {
       message: "im ok"
     });
   });
+  ``;
 };

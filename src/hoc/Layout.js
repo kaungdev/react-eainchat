@@ -6,10 +6,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Hidden from "@material-ui/core/Hidden";
@@ -146,7 +144,7 @@ class MyAppBar extends Component {
               >
                 <MenuIcon />
               </IconButton>
-              <Link>
+              <Link to="/">
                 <Button color="secondary">EainChat</Button>
               </Link>
             </Hidden>
@@ -156,13 +154,19 @@ class MyAppBar extends Component {
               color="secondary"
               noWrap
             >
-              <Link>
+              <Link to="/">
                 <Typography>EainChat</Typography>
               </Link>
             </Typography>
           </Toolbar>
         </AppBar>
-        {this.props.children}
+        <Grid container style={{ marginTop: 20, marginBottom: 20 }}>
+          <Grid item xs={1} />
+          <Grid item xs={10}>
+            {this.props.children}
+          </Grid>
+          <Grid item xs={1} />
+        </Grid>
         <Grid container>
           <Grid item xs={12}>
             <hr />

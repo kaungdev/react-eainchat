@@ -5,13 +5,14 @@ const userSchema = new Schema({
   name: { type: String, default: "" },
   fbId: { type: String, default: "" },
   email: { type: String, default: "" },
-  phone: [{ type: String, default: "" }],
+  phone: { type: String, default: "" },
   address: { type: String, default: "" },
   points: { type: Number, default: 0 },
   acceptedOrders: [{ type: Schema.Types.ObjectId, ref: "orders" }],
   receivedOrders: [{ type: Schema.Types.ObjectId, ref: "orders" }],
   meals: [{ type: Schema.Types.ObjectId, ref: "meals" }],
-  township: { type: Schema.Types.ObjectId, ref: "townships" }
+  township: { type: Schema.Types.ObjectId, ref: "townships", default: null },
+  isCompleteSetup: { type: Boolean, default: false }
 });
 
 userSchema.statics.upsertFbUser = function(accessToken, refreshToken, profile) {

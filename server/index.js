@@ -1,6 +1,8 @@
 const app = require("express")();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const morgan = require("morgan");
+const cors = require("cors");
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 
@@ -10,9 +12,12 @@ mongoose.connect("mongodb://localhost:27017/oily", {
 });
 
 app.use(bodyParser.json());
+app.use(morgan("dev"));
+app.use(cors());
 
 require("./routes/user")(app);
 require("./routes/general")(app);
+require("./routes/township")(app);
 
 app.get("*", (req, res) => {
   res.json({

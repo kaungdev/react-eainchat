@@ -1,15 +1,9 @@
 const jwt = require("jsonwebtoken");
 
-const createToken = auth => {
-  return jwt.sign(
-    {
-      id: auth.id
-    },
-    "!$#",
-    {
-      expiresIn: "10y"
-    }
-  );
+const key = "!$#";
+
+const createToken = id => {
+  return jwt.sign({ id }, key, { expiresIn: "10y" });
 };
 
 module.exports = {
@@ -20,14 +14,14 @@ module.exports = {
 
   verifyToken: (req, res, next) => {
     let token;
-    if (req.token) token = req.token;
+    if (req.query.token) token = req.query.token;
     if (req.body.token) token = req.body.token;
     if (!token)
       return res.json({
         status: "failed",
         message: "failed user verification"
       });
-    const { id } = jwt.verify(token, "!$#");
+    const { id } = jwt.verify(token, key);
     req.userId = id;
     next();
   }
