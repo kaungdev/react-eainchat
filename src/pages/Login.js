@@ -13,9 +13,11 @@ export default class Login extends Component {
   };
 
   async componentDidMount() {
-    const isCustomer = await localforage.getItem("isCustomer");
+    const user = await localforage.getItem("user");
+    console.log("TCL: Login -> componentDidMount -> user", user);
+    const { isCustomer } = user;
     console.log("TCL: Login -> componentDidMount -> isCustomer", isCustomer);
-    this.setState({ isLoginAsCustomer: isCustomer });
+    this.setState({ isLoginAsCustomer: !!isCustomer });
   }
 
   facebookResponseHandler = async fbResponse => {
@@ -29,6 +31,7 @@ export default class Login extends Component {
     const userResponse = await api.getUser({ token });
     console.log("TCL: Login -> userResponse", userResponse);
     const isCustomer = await localforage.getItem("isCustomer");
+    console.log("TCL: Login -> isCustomer", isCustomer);
     const userToSave = {
       token,
       ...userResponse.data.user,
@@ -45,7 +48,8 @@ export default class Login extends Component {
   handleCheckBox = () => async event => {
     event.persist();
     const value = event.target.checked;
-    await localforage.setItem("isCustomer", value);
+    const existingUser = await localforage.getItem("user");
+    await localforage.setItem("user", { ...existingUser, isCustomer: value });
     this.setState({ isLoginAsCustomer: value });
   };
 

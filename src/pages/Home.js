@@ -43,6 +43,7 @@ export default class Home extends Component {
 
   async componentDidMount() {
     const user = await helpers.getUser();
+    console.log("TCL: Home -> componentDidMount -> user", user);
     this.setState({ user }, () => {
       if (!user.isCustomer) {
         this.doSellerTasks();
