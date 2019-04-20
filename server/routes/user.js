@@ -18,7 +18,10 @@ module.exports = app => {
   );
 
   app.get("/api/user", verifyToken, async (req, res) => {
-    const user = await User.findById(req.userId).populate("township");
+    const user = await User.findById(req.userId)
+      .populate("township")
+      .populate("receivedOrders")
+      .populate("requestedOrders");
     res.json({
       status: "success",
       data: { user }

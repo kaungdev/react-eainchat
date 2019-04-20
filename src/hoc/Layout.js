@@ -107,29 +107,24 @@ class MyAppBar extends Component {
               onClick={this.toggleDrawer("left", false)}
               onKeyDown={this.toggleDrawer("left", false)}
             >
-              <Link to="/travel_infos">
+              <Link to="/points">
                 <ListItem button>
-                  <ListItemText primary="Travel Info" />
+                  <ListItemText primary="Points" />
                 </ListItem>
               </Link>
-              <Link to="/destinations">
+              <Link to="/orders">
                 <ListItem button>
-                  <ListItemText primary="Destination" />
+                  <ListItemText primary="Orders" />
                 </ListItem>
               </Link>
-              <Link to="/tour_packages">
+              <Link to="/">
                 <ListItem button>
-                  <ListItemText primary="Tour Packages" />
+                  <ListItemText primary="Home" />
                 </ListItem>
               </Link>
-              <Link to="/my_favorites">
+              <Link to="/setup">
                 <ListItem button>
-                  <ListItemText primary="Logout" />
-                </ListItem>
-              </Link>
-              <Link to="/search">
-                <ListItem button>
-                  <ListItemText primary="Search" />
+                  <ListItemText primary="Edit Information" />
                 </ListItem>
               </Link>
             </div>
@@ -168,9 +163,11 @@ class MyAppBar extends Component {
           <Grid item xs={1} />
         </Grid>
         <Grid container>
-          <Grid item xs={12}>
+          <Grid item xs={12} style={{ padding: 12 }}>
             <hr />
-            Copyright © 2019 EainChat App. All rights reserved.
+            <Typography>
+              Copyright © 2019 EainChat App. All rights reserved.
+            </Typography>
           </Grid>
         </Grid>
       </div>

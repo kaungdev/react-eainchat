@@ -14,6 +14,7 @@ export default class Login extends Component {
 
   async componentDidMount() {
     const isCustomer = await localforage.getItem("isCustomer");
+    console.log("TCL: Login -> componentDidMount -> isCustomer", isCustomer);
     this.setState({ isLoginAsCustomer: isCustomer });
   }
 
@@ -24,6 +25,7 @@ export default class Login extends Component {
       accessToken: fbResponse.accessToken
     });
     const token = authResponse.data.token;
+    console.log("TCL: Login -> token", token);
     const userResponse = await api.getUser({ token });
     console.log("TCL: Login -> userResponse", userResponse);
     const isCustomer = await localforage.getItem("isCustomer");
@@ -58,7 +60,7 @@ export default class Login extends Component {
         >
           <Grid container alignItems="center">
             <Checkbox
-              value="isLoginAsCustomer"
+              checked={this.state.isLoginAsCustomer}
               onChange={this.handleCheckBox()}
             />
             <Typography>Login as Customer</Typography>

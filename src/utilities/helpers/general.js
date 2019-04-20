@@ -9,5 +9,22 @@ export default {
     formData.append("file", file);
     formData.append("folder", folder);
     return formData;
+  },
+
+  openSnackbar: ({ message, that }) => {
+    that.setState({ isSnackbar: true, snackbarMessage: message });
+    setTimeout(() => {
+      that.setState({ isSnackbar: false });
+    }, 3000);
+  },
+
+  getImageUrl: image => {
+    if (image) {
+      return (
+        "https://res.cloudinary.com/kaungsorcerer/image/upload/v1555630425/" +
+        image
+      );
+    }
+    return "https://www.holsterfashion.co.za/wp-content/themes/claue/assets/images/placeholder.png";
   }
 };

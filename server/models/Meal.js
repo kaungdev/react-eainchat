@@ -8,6 +8,7 @@ const mealSchema = new Schema({
   meat: { type: String, default: "", required: true },
   category: { type: String, default: "", required: true },
   price: { type: String, required: true },
+  image: { type: String, required: true },
   seller: { type: Schema.Types.ObjectId, ref: "users", required: true }
 });
 

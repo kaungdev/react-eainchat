@@ -7,7 +7,7 @@ const cors = require("cors");
 const port = parseInt(process.env.PORT, 10) || 3000;
 
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:27017/oily", {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true
 });
 
@@ -18,6 +18,8 @@ app.use(cors());
 require("./routes/user")(app);
 require("./routes/general")(app);
 require("./routes/township")(app);
+require("./routes/meal")(app);
+require("./routes/order")(app);
 
 app.get("*", (req, res) => {
   res.json({

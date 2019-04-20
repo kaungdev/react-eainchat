@@ -3,9 +3,10 @@ const { Schema } = mongoose;
 
 const orderSchema = new Schema({
   createdAt: { type: Date, default: Date.now() },
-  isVegetarian: { type: Boolean, default: false, required: true },
-  meat: { type: String, default: "", required: true },
-  category: { type: String, default: "", required: true },
+  meal: { type: Schema.Types.ObjectId, ref: "meals", required: true },
+  quantity: { type: Number, required: true },
+  price: { type: Number },
+  totalPrice: { type: Number },
   seller: { type: Schema.Types.ObjectId, ref: "users", required: true },
   customer: { type: Schema.Types.ObjectId, ref: "users", required: true }
 });
