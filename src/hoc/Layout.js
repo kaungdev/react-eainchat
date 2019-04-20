@@ -127,6 +127,11 @@ class MyAppBar extends Component {
                   <ListItemText primary="Edit Information" />
                 </ListItem>
               </Link>
+              <Link to="/login">
+                <ListItem button>
+                  <ListItemText primary="Log out" />
+                </ListItem>
+              </Link>
             </div>
           </Drawer>
           <Toolbar>

@@ -8,7 +8,8 @@ import {
 import Layout from "./hoc/Layout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Cart from "./pages/Cart";
+import Orders from "./pages/Orders";
+import Points from "./pages/Points";
 import Setup from "./pages/Setup";
 
 class App extends Component {
@@ -18,8 +19,9 @@ class App extends Component {
     const routes = (
       <Switch>
         <Route path="/login" exact component={Login} />
-        <Route path="/cart" exact component={Cart} />
         <Route path="/setup" exact component={Setup} />
+        <Route path="/orders" exact component={Orders} />
+        <Route path="/points" exact component={Points} />
         <Route path="/" exact component={Home} />
         <Redirect to="/" />
       </Switch>

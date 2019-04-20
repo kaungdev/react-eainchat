@@ -36,6 +36,7 @@ module.exports = app => {
     user.phone = phone;
     user.township = township;
     user.isCompleteSetup = true;
+    user.points = 10000;
     const saved = await user.save();
     res.json({ status: "success", data: { user: saved } });
   });
