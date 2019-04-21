@@ -44,7 +44,8 @@ export default class Home extends Component {
   async componentDidMount() {
     const user = await helpers.getUser();
     console.log("TCL: Home -> componentDidMount -> user", user);
-    this.setState({ user }, () => {
+    this.setState({ user }, cb => {
+      console.log(user);
       if (!user.isCustomer) {
         this.doSellerTasks();
       } else {
@@ -63,6 +64,7 @@ export default class Home extends Component {
 
   doCustomerTasks = async () => {
     const townshipId = this.state.user.township._id;
+    console.log("TCL: doCustomerTasks -> townshipId", townshipId);
     const { data, status } = await api.getMealsByTownship({ townshipId });
     if (status !== "success") return;
     this.setMealData(data);
@@ -338,7 +340,18 @@ export default class Home extends Component {
     await localforage.setItem("user", updatedUser);
   };
 
+  getCostPoints = () => {
+    try {
+      const quantity = this.state.orderQuantity;
+      const price = this.state.orderMeal.price;
+      return (quantity * price) / 10;
+    } catch (error) {
+      return 0;
+    }
+  };
+
   renderCustomer = () => {
+    const { points } = this.state.user;
     return (
       <div>
         <Modal open={this.state.isShowOrderForm}>
@@ -350,6 +363,9 @@ export default class Home extends Component {
                 label="Quantity"
                 fullWidth
               />
+              <div style={{ height: 20 }} />
+              <Typography>Available Points: {points}</Typography>
+              <Typography>Cost Points: {this.getCostPoints()}</Typography>
             </CardContent>
             <CardActions>
               <Button

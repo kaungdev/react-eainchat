@@ -10,7 +10,7 @@ module.exports = app => {
     const mealId = req.body.payload.meal;
     const meal = await Meal.findById(mealId);
     const { price } = meal;
-    const seller = await User.findById(meal.seller);
+    const seller = await User.findById(meal.seller).populate("township");
     const totalPrice = price * quantity;
     const order = await new Order({
       meal,
