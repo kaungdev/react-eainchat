@@ -12,26 +12,14 @@ export default class Login extends Component {
     isLoginAsCustomer: true
   };
 
-  async componentDidMount() {
-    const user = await localforage.getItem("user");
-    console.log("TCL: Login -> componentDidMount -> user", user);
-    const { isCustomer } = user;
-    console.log("TCL: Login -> componentDidMount -> isCustomer", isCustomer);
-    this.setState({ isLoginAsCustomer: !!isCustomer });
-  }
-
   facebookResponseHandler = async fbResponse => {
-    console.log("TCL: Login -> fbResponse", fbResponse);
     if (!fbResponse.accessToken) return;
     const authResponse = await api.postAuth({
       accessToken: fbResponse.accessToken
     });
     const token = authResponse.data.token;
-    console.log("TCL: Login -> token", token);
     const userResponse = await api.getUser({ token });
-    console.log("TCL: Login -> userResponse", userResponse);
     const isCustomer = await localforage.getItem("isCustomer");
-    console.log("TCL: Login -> isCustomer", isCustomer);
     const userToSave = {
       token,
       ...userResponse.data.user,
