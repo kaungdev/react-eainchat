@@ -107,11 +107,6 @@ class MyAppBar extends Component {
               onClick={this.toggleDrawer("left", false)}
               onKeyDown={this.toggleDrawer("left", false)}
             >
-              <Link to="/">
-                <ListItem button>
-                  <ListItemText primary="Home" />
-                </ListItem>
-              </Link>
               <Link to="/points">
                 <ListItem button>
                   <ListItemText primary="Points" />
@@ -120,6 +115,11 @@ class MyAppBar extends Component {
               <Link to="/orders">
                 <ListItem button>
                   <ListItemText primary="Orders" />
+                </ListItem>
+              </Link>
+              <Link to="/">
+                <ListItem button>
+                  <ListItemText primary="Home" />
                 </ListItem>
               </Link>
               <Link to="/setup">

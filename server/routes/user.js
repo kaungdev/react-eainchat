@@ -21,31 +21,7 @@ module.exports = app => {
     const user = await User.findById(req.userId)
       .populate("township")
       .populate("receivedOrders")
-      .populate("requestedOrders")
-      .populate({
-        path: "receivedOrders",
-        populate: { path: "meal" }
-      })
-      .populate({
-        path: "receivedOrders",
-        populate: { path: "seller" }
-      })
-      .populate({
-        path: "receivedOrders",
-        populate: { path: "customer" }
-      })
-      .populate({
-        path: "requestedOrders",
-        populate: { path: "meal" }
-      })
-      .populate({
-        path: "requestedOrders",
-        populate: { path: "seller" }
-      })
-      .populate({
-        path: "requestedOrders",
-        populate: { path: "customer" }
-      });
+      .populate("requestedOrders");
     res.json({
       status: "success",
       data: { user }

@@ -25,6 +25,7 @@ export default class Points extends Component {
 
   async componentDidMount() {
     const user = await helpers.getUser();
+
     this.setState({ user }, () => {
       console.log(user);
     });
